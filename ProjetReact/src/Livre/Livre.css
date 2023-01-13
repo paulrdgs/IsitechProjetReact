@@ -1,0 +1,52 @@
+.Livre {
+    width: 100%;
+    padding-left: 2%;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    border-radius: 10px;
+    border-bottom: 1px solid var(--grey);
+}
+
+.Livre:hover {
+    background-color: var(--fond);
+    cursor: pointer;
+}
+
+.Livre p {
+    margin-top: 1%;
+    color: var(--colors-text-detail);
+}
+
+.Livre button{
+    border: none;
+    border-radius: 50px;
+    background-color: var(--colors-text-detail);
+    text-align: center;
+    width: 10%;
+    height: 30px;
+    font-size: 16px;
+    margin-top: 1%;
+    cursor: pointer;
+    min-width: 125px;
+}
+
+.Livre .description {
+    display: none;
+}
+
+.Livre .actif {
+    display: block;
+}
+
+.italicResumer {
+    color: blue;
+}
+
+.italicEdition {
+    color: red;
+}
+
+.Livre .h4 {
+    color: var(--primary);
+    font-size: 18px;
+}
