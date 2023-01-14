@@ -7,34 +7,31 @@ function Collection() {
 
   const context = useContext(myAppContext)
 
-  
+
   const myReducerFiltreActive = (state, action) => {
-    switch(action.type)
-    {
+    switch (action.type) {
       case 'filtre':
-        if(action.payload == 1)
-        {
-          return {nom: true, edition :false}
+        if (action.payload === 1) {
+          return { nom: true, edition: false }
         }
-        else
-        {
-          return {nom: false, edition :true} 
+        else {
+          return { nom: false, edition: true }
         }
-        
+
 
       default:
         return state
     }
   }
 
-  const [filtreActive, setFiltreActive] = useReducer(myReducerFiltreActive, {nom: true, edition :false})
-  
+  const [filtreActive, setFiltreActive] = useReducer(myReducerFiltreActive, { nom: true, edition: false })
+
 
   useEffect(() => {
     fetch("https://localhost:7152/api/Collections/CollectionUtilisateur?idUtilisateur=1")
       .then((result) => {
         result.json().then((resp) => {
-          context.setTableauCollection({type: "all",payload: resp});
+          context.setTableauCollection({ type: "all", payload: resp });
         }).catch(function (error) {
           console.log("error : ", error);
         })
@@ -42,24 +39,32 @@ function Collection() {
   }, [])
 
   const FilterBooks = (event) => {
-    
-    if (event.target.value == "") {
-      context.setTableauCollection({type: "all",payload: context.tableauCollection.collection});
+
+    if (event.target.value === "") {
+      context.setTableauCollection({ type: "all", payload: context.tableauCollection.collection });
     }
     else {
-      if(filtreActive.nom == true)
-      {
-        context.setTableauCollection({type: "filtrerName",payload: event.target.value});
+      if (filtreActive.nom === true) {
+        const resultsName = context.tableauCollection.collection.filter(book => {
+          const bk = book.nom.toLowerCase();
+          return bk.startsWith(event.target.value.toLowerCase());
+        })
+        const val = context.tableauCollection.collection
+        context.setTableauCollection({ type: "filtrerNameEdition", payload: { first: resultsName, seconde: val } });
       }
-      else
-      {
-        context.setTableauCollection({type: "filtrerEdition",payload: event.target.value});
-      }      
+      else {
+        const resultsEdition = context.tableauCollection.collection.filter(book => {
+          const bk = book.edition.toLowerCase();
+          return bk.startsWith(event.target.value.toLowerCase());
+        })
+        const val = context.tableauCollection.collection
+        context.setTableauCollection({ type: "filtrerNameEdition", payload: { first: resultsEdition, seconde: val } });
+      }
     }
   }
 
   const changeFilter = (val) => {
-    setFiltreActive({type: "filtre", payload: val})
+    setFiltreActive({ type: "filtre", payload: val })
   }
 
   return (

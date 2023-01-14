@@ -28,7 +28,7 @@ function ListCollection() {
       <div className="nbTome">Vous avez {NbTomeCollection} Tomes</div>
       {
         context.tableauCollection.collectionFiltre.map((element, index) => (
-          <Livre index={index} key={index}/>
+          <Livre index={index} />
         ))
       }
     </>

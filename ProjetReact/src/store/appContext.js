@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useContext } from "react";
 
 export const myAppContext = createContext({
     tableauCollection: {
@@ -17,19 +17,8 @@ export const MyAppContextProvider = ({children}) => {
           case 'all':
             return {collection: action.payload, collectionFiltre: action.payload}
     
-        //   case 'filtrerName':
-        //     const resultsName = allBooks.filter(book => {
-        //       const bk = book.nom.toLowerCase();
-        //       return bk.startsWith(action.payload.toLowerCase());
-        //     })
-        //     return resultsName
-    
-        //   case 'filtrerEdition':
-        //     const resultsEdition = allBooks.filter(book => {
-        //       const bk = book.edition.toLowerCase();
-        //       return bk.startsWith(action.payload.toLowerCase());
-        //     })
-        //     return resultsEdition
+          case 'filtrerNameEdition':
+            return {collection: action.payload.seconde, collectionFiltre: action.payload.first}
     
           default:
             return state
