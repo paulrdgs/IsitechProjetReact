@@ -1,14 +1,19 @@
 import './Livre.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { myAppContext } from './../store/appContext';
 
-function Livre(props) {
+function Livre(index) {
+
+  const context = useContext(myAppContext)
 
     const [NbTomeParLivre, setNbTome] = useState(null)
     const [NbTomeParUserParLivre, setNbTomeParUserParLivre] = useState(null)
 
     
+
+    
     useEffect(() => {
-        fetch("https://localhost:7152/api/Tomes/NbSpecificTome?id="+props.livre.id)
+        fetch("https://localhost:7152/api/Tomes/NbSpecificTome?id="+context.tableauCollection.collectionFiltre[index.index].id)
           .then((result) => {
             result.json().then((resp) => {
                 setNbTome(resp);
@@ -19,7 +24,7 @@ function Livre(props) {
       }, [])
 
       useEffect(() => {
-        fetch("https://localhost:7152/api/Collections/AllLivresByUserByLivre?idUtilisateur=1&idLivre="+props.livre.id)
+        fetch("https://localhost:7152/api/Collections/AllLivresByUserByLivre?idUtilisateur=1&idLivre="+context.tableauCollection.collectionFiltre[index.index].id)
           .then((result) => {
             result.json().then((resp) => {
                 setNbTomeParUserParLivre(resp);
@@ -31,8 +36,9 @@ function Livre(props) {
 
     return (
         <div className='Livre'>
-            <div className='h4'>{props.livre.nom}</div>
+            <div className='h4'>{context.tableauCollection.collectionFiltre[index.index].nom}</div>
             <p>{NbTomeParUserParLivre} / {NbTomeParLivre} </p>
+            
         </div>
     );
 }

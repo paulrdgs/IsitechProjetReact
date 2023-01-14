@@ -1,10 +1,16 @@
 import './ListCollection.css';
 import Livre from './../Livre/Livre.js';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { myAppContext } from './../store/appContext';
 
-function ListCollection(props) {
+function ListCollection() {
+
+  const context = useContext(myAppContext)
 
   const [NbTomeCollection, setNbTomeCollection] = useState(null)
+
+  
+  
 
   useEffect(() => {
     fetch("https://localhost:7152/api/Collections/AllLivresByUser?idUtilisateur=1")
@@ -21,8 +27,8 @@ function ListCollection(props) {
     <>
       <div className="nbTome">Vous avez {NbTomeCollection} Tomes</div>
       {
-        props.collection.map((element, index) => (
-          <Livre livre={element} index={index} />
+        context.tableauCollection.collectionFiltre.map((element, index) => (
+          <Livre index={index} key={index}/>
         ))
       }
     </>
