@@ -30,7 +30,7 @@ function Menu() {
         }
     }
 
-    const [changeMenuActif, setChangeMenuActif] = useReducer(myReducerChangeMenuActif, {connect: false, collection: true, recherche: false})
+    const [changeMenuActif, setChangeMenuActif] = useReducer(myReducerChangeMenuActif, {connect: true, collection: false, recherche: false})
     const notactif = "Sous_Menu";
     const actif = "Actif Sous_Menu";
 

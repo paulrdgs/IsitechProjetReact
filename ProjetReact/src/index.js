@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './css/index.css';
-import Collection from './Collection';
+import Collection from './Collection/Collection';
+import Connexion from './Connexion/Connexion';
 import Menu from './Menu/Menu.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MyAppContextProvider } from './store/appContext'
@@ -12,7 +13,8 @@ root.render(
     <BrowserRouter>
       <Menu />
       <Routes>
-        <Route path="/connect" element={<Collection />} />
+        <Route path="/" element={<Connexion />} />
+        <Route path="/connect" element={<Connexion />} />
         <Route path="/collect" element={<Collection />} />
         <Route path="/search" element={<Collection />} />
       </Routes>
