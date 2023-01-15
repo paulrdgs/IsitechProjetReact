@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './css/index.css';
 import Collection from './Collection/Collection';
 import Connexion from './Connexion/Connexion';
+import Rechercher from './Rechercher/Rechercher';
 import Menu from './Menu/Menu.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MyAppContextProvider } from './store/appContext'
@@ -16,7 +17,7 @@ root.render(
         <Route path="/" element={<Connexion />} />
         <Route path="/connect" element={<Connexion />} />
         <Route path="/collect" element={<Collection />} />
-        <Route path="/search" element={<Collection />} />
+        <Route path="/search" element={<Rechercher />} />
       </Routes>
     </BrowserRouter>
   </MyAppContextProvider>

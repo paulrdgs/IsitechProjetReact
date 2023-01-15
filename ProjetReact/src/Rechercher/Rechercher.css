@@ -1,0 +1,16 @@
+.listLivre {
+    width: 85%;
+    margin-left: 15%;
+    height: 100%;
+}
+
+.listLivre .livredispo {
+    width: 100%;
+    border-bottom: 1px solid var(--grey);
+    border-radius: 10px;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    padding-left: 4%;
+    font-size: 18px;
+}
